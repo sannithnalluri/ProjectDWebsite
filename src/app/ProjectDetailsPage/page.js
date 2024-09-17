@@ -29,7 +29,7 @@ export default function ProjectDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-2">
+    <Suspense className="min-h-screen bg-gray-100 p-2">
       <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
         <div className="flex justify-between items-center border-b pb-4 mb-6">
           <h1 className="text-3xl font-bold text-gray-800">Project Details</h1>
@@ -103,6 +103,6 @@ export default function ProjectDetailsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
