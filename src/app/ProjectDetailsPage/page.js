@@ -1,8 +1,12 @@
 'use client';
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { FaEdit, FaPlus, FaRegCalendarAlt, FaDollarSign, FaTasks, FaCheckCircle, FaProjectDiagram } from 'react-icons/fa';
 import TaskOfProject from '../HomepageComponets/TaskOfProject';
+
+// Fallback UI component during Suspense
+const Loading = () => <div>Loading project details...</div>;
 
 export default function ProjectDetailsPage() {
   const searchParams = useSearchParams();
@@ -33,7 +37,7 @@ export default function ProjectDetailsPage() {
             <FaEdit className="mr-2" /> Update Details
           </button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-red-600 text-white p-6 rounded-lg flex flex-col items-center">
             <FaRegCalendarAlt className="text-4xl mb-2" />
@@ -87,9 +91,10 @@ export default function ProjectDetailsPage() {
                 <FaEdit className="mr-1" /> Edit
               </button>
             </div>
-            <div className=" p-4 rounded-lg flex justify-between items-center">
-              
-              <TaskOfProject projectId={projectId}/>
+            <div className="p-4 rounded-lg flex justify-between items-center">
+              <Suspense fallback={<Loading />}>
+                <TaskOfProject projectId={projectId} />
+              </Suspense>
             </div>
             <div className="bg-gray-200 p-4 rounded-lg flex justify-between items-center">
               <span className="text-gray-700 font-medium">Completed Tasks:</span>
